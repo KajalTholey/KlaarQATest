@@ -38,12 +38,12 @@ public class Test2Copy {
 	@Test
 	public void Login() throws InterruptedException {
 		
-		System.out.println("In Login Method");
+		//1)Navigate to Performance Module
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("SyN6Ktl@O0");
 		driver.findElement(By.xpath("//*[@id='frmLogin']/div[4]/button")).click();
 		
-driver.findElement(By.id("menu-container")).click();
+		driver.findElement(By.id("menu-container")).click();
 		
 		JavascriptExecutor js=(JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,300)");
