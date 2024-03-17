@@ -6,19 +6,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import org.openqa.selenium.WebElement;
 
 public class Test2Copy {
+	
+	WebDriver driver;
 
-	public static void main(String[] args) throws InterruptedException {
-
+	@BeforeTest
+	public void initDriver() throws InterruptedException {
+		
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\eclipse-workspace\\QATest\\src\\main\\java\\com\\QATest\\chromedriver.exe");
 		
 		// Initialize the ChromeDriver instance
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         
         // Maximize the browser window
         driver.manage().window().maximize();
@@ -26,11 +34,16 @@ public class Test2Copy {
         Thread.sleep(5000);
         driver.manage().window().maximize();
 
+	}
+	@Test
+	public void Login() throws InterruptedException {
+		
+		System.out.println("In Login Method");
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("SyN6Ktl@O0");
 		driver.findElement(By.xpath("//*[@id='frmLogin']/div[4]/button")).click();
-
-		driver.findElement(By.id("menu-container")).click();
+		
+driver.findElement(By.id("menu-container")).click();
 		
 		JavascriptExecutor js=(JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,300)");
@@ -60,6 +73,8 @@ public class Test2Copy {
 		Thread.sleep(5000);
 		
 		//5) In editor insert an image
+		//Actions class method to drag and drop		
+		Actions builder = new Actions(driver);
 		
 		//6) Set priority to be high and height to be 20
 		Select priority = new Select(driver.findElement(By.id("goalPriority")));
@@ -77,7 +92,7 @@ public class Test2Copy {
 		js.executeScript("window.scrollBy(0,300)");
 		WebElement sendate = driver.findElement(By.xpath("//*[@id=\"addGoalContainer\"]/div/div[2]/form/div/div/oxd-decorator[2]/div/div[1]/div/div[1]/div/div[2]/div[2]/div[1]/div/button/i"));
 		sendate.click();
-		WebElement date_element = driver.findElement(By.xpath("//div[@class='picker__day picker__day--infocus'][text()='18']"));
+		WebElement date_element = driver.findElement(By.xpath("//div[@class='picker__day picker__day--infocus'][text()='22']"));
 		date_element.click();
 
 		//7) Save goal and verify goal details
@@ -97,6 +112,12 @@ public class Test2Copy {
 		    System.out.println("Goal details do not match the expected values.");
 		}
 
+	}
+	@AfterTest
+	public void tearDown() throws InterruptedException {
+	//Thread.sleep(5000);
+	//driver.close();
+	//driver.quit();
 	}
 
 }
