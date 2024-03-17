@@ -132,7 +132,7 @@ public class Test1 {
 	@AfterTest
 	public void tearDown() throws InterruptedException {
 	//Thread.sleep(5000);
-	//driver.close();
+		driver.close();
 	//driver.quit();
 	}
 }
